@@ -1,0 +1,50 @@
+﻿<Window
+    x:Class="Capture_Gemini.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="WinUI 3 Screen Recorder (C++/WinRT)">
+
+    <Grid RowDefinitions="Auto, Auto, *">
+        <!-- メニューバー -->
+        <MenuBar Grid.Row="0">
+            <MenuBarItem Title="設定" x:Name="SettingsMenuBarItem">
+                <MenuFlyoutSubItem Text="画面サイズ (解像度)">
+                    <RadioMenuFlyoutItem x:Name="Scale1xMenuItem" Text="等倍 (1/1)" GroupName="ResolutionScale" IsChecked="True" Click="QualityMenuItem_Click" />
+                    <RadioMenuFlyoutItem x:Name="ScaleHalfMenuItem" Text="1/2 サイズ" GroupName="ResolutionScale" Click="QualityMenuItem_Click" />
+                    <RadioMenuFlyoutItem x:Name="ScaleQuarterMenuItem" Text="1/4 サイズ" GroupName="ResolutionScale" Click="QualityMenuItem_Click" />
+                </MenuFlyoutSubItem>
+                <MenuFlyoutSubItem Text="フレームレート">
+                    <RadioMenuFlyoutItem x:Name="Fps60MenuItem" Text="60 fps" GroupName="FrameRate" IsChecked="True" Click="QualityMenuItem_Click" />
+                    <RadioMenuFlyoutItem x:Name="Fps30MenuItem" Text="30 fps" GroupName="FrameRate" Click="QualityMenuItem_Click" />
+                    <RadioMenuFlyoutItem x:Name="Fps20MenuItem" Text="20 fps" GroupName="FrameRate" Click="QualityMenuItem_Click" />
+                </MenuFlyoutSubItem>
+                <MenuFlyoutSeparator />
+                <ToggleMenuFlyoutItem x:Name="RecordAudioMenuItem" Text="システム音声も録音する" IsChecked="True" Click="RecordAudioMenuItem_Click" />
+            </MenuBarItem>
+        </MenuBar>
+
+        <!-- 操作パネル -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="12" Padding="16,10" Background="{ThemeResource SurfaceStrokeColorDefaultBrush}">
+            <Button x:Name="StartCaptureButton" Content="キャプチャ対象を選択" Click="StartCaptureButton_Click" />
+            <Button x:Name="StopCaptureButton" Content="キャプチャ停止" Click="StopCaptureButton_Click" IsEnabled="False" />
+            
+            <!-- フェーズ2で使用する録画ボタン -->
+            <Button x:Name="StartRecordButton" Content="録画開始" Click="StartRecordButton_Click" IsEnabled="False" Background="Red" Foreground="White" />
+            <Button x:Name="StopRecordButton" Content="録画停止・保存" Click="StopRecordButton_Click" IsEnabled="False" />
+
+            <!-- システム音声録音チェックボックス -->
+            <CheckBox x:Name="RecordAudioCheckBox" Content="システム音声も録音する" IsChecked="True" VerticalAlignment="Center" Margin="8,0,0,0" Click="RecordAudioCheckBox_Click" />
+
+            <!-- 現在の録画設定ステータス表示 -->
+            <TextBlock x:Name="QualityStatusTextBlock" Text="録画設定: 等倍 / 60 fps" VerticalAlignment="Center" Margin="12,0,0,0" Opacity="0.8" />
+        </StackPanel>
+
+        <!-- プレビュー表示領域 -->
+        <Border Grid.Row="2" Margin="16" BorderBrush="Gray" BorderThickness="1">
+            <SwapChainPanel x:Name="PreviewSwapChainPanel" />
+        </Border>
+    </Grid>
+</Window>

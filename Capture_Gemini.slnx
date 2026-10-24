@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Capture_Gemini/Capture_Gemini.vcxproj" Id="2126bf47-536d-4086-b621-69d1cb605b61">
+    <Deploy />
+  </Project>
+</Solution>
